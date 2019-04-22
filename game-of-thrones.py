@@ -1,4 +1,5 @@
 from characters import characters
+from houses import houses
 # print(characters[0])
 # print(characters[0]['name'])
 
@@ -24,6 +25,10 @@ valyrian_count = 0
 hot_pie = ''
 not_tv = 0
 targaryen = []
+house_histogram = {}
+
+for key in houses:
+    house_histogram[houses[key]] = 0
 
 for i in range(len(characters)):
     if characters[i]['name'][0] == 'A':
@@ -44,11 +49,17 @@ for i in range(len(characters)):
     if(characters[i]['name'] == 'Hot Pie'):
         hot_pie = characters[i]['playedBy']
 
-    if(len(characters[i]['tvSeries']) == 0):
+    if(characters[i]['playedBy'][0] == ''):
         not_tv += 1
 
     if(characters[i]['name'].find('Targaryen') != -1):
         targaryen.append(characters[i]['name'])
+
+    #if(characters[i]['allegiances'] == houses[characters[i]['allegiances']]):
+    #print(houses[characters[i]['allegiances']])
+    if(len(characters[i]['allegiances']) > 0):
+        if(characters[i]['allegiances'][0] in houses):
+            house_histogram[houses[characters[i]['allegiances'][0]]] += 1
 
 # How many characters names start with "A"?
 print(count_names_a)
@@ -75,3 +86,5 @@ print(not_tv)
 print(targaryen)
 
 # Create a histogram of the houses (it's the "allegiances" key)
+for key in house_histogram:
+    print(key, '-', house_histogram[key])
