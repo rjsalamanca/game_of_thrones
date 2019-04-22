@@ -11,3 +11,5 @@ For each of these questions, write a function that returns the answer.
 * How many characters are *not* in the tv show?
 * Produce a list characters with the last name "Targaryen"
 * Create a histogram of the houses (it's the "allegiances" key)
+
+**Solutions stored in: game-of-thrones.py**
