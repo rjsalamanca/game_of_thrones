@@ -57,9 +57,11 @@ for i in range(len(characters)):
 
     #if(characters[i]['allegiances'] == houses[characters[i]['allegiances']]):
     #print(houses[characters[i]['allegiances']])
+
     if(len(characters[i]['allegiances']) > 0):
-        if(characters[i]['allegiances'][0] in houses):
-            house_histogram[houses[characters[i]['allegiances'][0]]] += 1
+        for j in range(len(characters[i]['allegiances'])):
+            if(characters[i]['allegiances'][j] in houses):
+                house_histogram[houses[characters[i]['allegiances'][j]]] += 1
 
 # How many characters names start with "A"?
 print(count_names_a)
@@ -86,5 +88,6 @@ print(not_tv)
 print(targaryen)
 
 # Create a histogram of the houses (it's the "allegiances" key)
+# Confirmed by pulling house House Targaryen info and matching the length of swordMembers
 for key in house_histogram:
     print(key, '-', house_histogram[key])
