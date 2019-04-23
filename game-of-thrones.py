@@ -25,10 +25,7 @@ valyrian_count = 0
 hot_pie = ''
 not_tv = 0
 targaryen = []
-house_histogram = {}
 
-for key in houses:
-    house_histogram[houses[key]] = 0
 
 for i in range(len(characters)):
     if characters[i]['name'][0] == 'A':
@@ -54,14 +51,6 @@ for i in range(len(characters)):
 
     if(characters[i]['name'].find('Targaryen') != -1):
         targaryen.append(characters[i]['name'])
-
-    #if(characters[i]['allegiances'] == houses[characters[i]['allegiances']]):
-    #print(houses[characters[i]['allegiances']])
-
-    if(len(characters[i]['allegiances']) > 0):
-        for j in range(len(characters[i]['allegiances'])):
-            if(characters[i]['allegiances'][j] in houses):
-                house_histogram[houses[characters[i]['allegiances'][j]]] += 1
 
 # How many characters names start with "A"?
 print(count_names_a)
@@ -89,5 +78,20 @@ print(targaryen)
 
 # Create a histogram of the houses (it's the "allegiances" key)
 # Confirmed by pulling house House Targaryen info and matching the length of swordMembers
-for key in house_histogram:
-    print(key, '-', house_histogram[key])
+def house_histogram():
+
+    histogram = {}
+
+    for key in houses:
+        histogram[houses[key]] = 0
+        
+    for chars in characters:
+        if len(chars['allegiances']) > 0:
+            for j in range(len(chars['allegiances'])):
+                if chars['allegiances'][j] in houses:
+                    histogram[houses[chars['allegiances'][j]]] += 1
+
+    for key in histogram:
+        print(key, '-', histogram[key])
+
+house_histogram()
